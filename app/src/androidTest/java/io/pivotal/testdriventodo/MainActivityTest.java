@@ -2,6 +2,7 @@ package io.pivotal.testdriventodo;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Created by pivotal on 10/14/15.
@@ -27,5 +28,13 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testPreconditions() {
         assertNotNull("mMainActivity is null", mMainActivity);
         assertNotNull("mListView is null", mListView);
+    }
+
+    public void testDummyItems() {
+        TextView firstChild = (TextView) mListView.getChildAt(0);
+        TextView secondChild = (TextView) mListView.getChildAt(1);
+        assertEquals("dummy 1", firstChild.getText().toString());
+        assertEquals("dummy 2", secondChild.getText().toString());
+        assertNull(mListView.getChildAt(2));
     }
 }
