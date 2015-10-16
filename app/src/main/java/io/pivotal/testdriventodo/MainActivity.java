@@ -25,15 +25,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ArrayList<String> listItems = new ArrayList<>();
-        listItems.add("dummy 1");
-        listItems.add("dummy 2");
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(
                         this,
                         android.R.layout.simple_list_item_1,
                         listItems
                 );
-        ((ListView) findViewById(R.id.todo_list_id)).setAdapter(adapter);
+        ListView listView = (ListView) findViewById(R.id.todo_list_id);
+        ItemList itemList = new ItemList(listItems, adapter, listView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
