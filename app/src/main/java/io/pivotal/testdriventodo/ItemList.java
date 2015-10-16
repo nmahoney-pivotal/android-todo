@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class ItemList {
 
-    private List<String> list;
-    private ArrayAdapter<String> adapter;
+    private List<Item> list;
+    private ArrayAdapter<Item> adapter;
     private ListView listView;
 
-    public ItemList(List<String> list, ArrayAdapter<String> adapter, ListView listView) {
+    public ItemList(List<Item> list, ArrayAdapter<Item> adapter, ListView listView) {
         this.list = list;
         this.adapter = adapter;
         this.listView = listView;
@@ -22,9 +22,13 @@ public class ItemList {
         addDummyItems();
     }
 
+    public void createNewItem() {
+        this.list.add(new Item("", true));
+    }
+
     private void addDummyItems() {
-        list.add("dummy 1");
-        list.add("dummy 2");
+        list.add(new Item("dummy 1", false));
+        list.add(new Item("dummy 2", false));
         adapter.notifyDataSetChanged();
     }
 }

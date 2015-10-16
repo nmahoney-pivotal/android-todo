@@ -10,10 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ItemList itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +27,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<String> listItems = new ArrayList<>();
-        ArrayAdapter<String> adapter =
+        ArrayList<Item> listItems = new ArrayList<>();
+        ArrayAdapter<Item> adapter =
                 new ArrayAdapter<>(
                         this,
-                        android.R.layout.simple_list_item_1,
+                        R.layout.custom_item_layout,
+                        R.id.todo_item_text_view_id,
                         listItems
                 );
         ListView listView = (ListView) findViewById(R.id.todo_list_id);
-        ItemList itemList = new ItemList(listItems, adapter, listView);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        itemList = new ItemList(listItems, adapter, listView);
     }
 
     @Override
@@ -65,4 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    public void createNewItem(View view) {
+//        itemList.createNewItem();
+//    }
 }
